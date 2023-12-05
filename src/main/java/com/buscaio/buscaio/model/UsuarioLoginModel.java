@@ -1,6 +1,6 @@
 package com.buscaio.buscaio.model;
 
-public class UsuarioLogin {
+public class UsuarioLoginModel {
 	
     private long id;
 	

@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.redetec.redetec.model.Categoria;
-import com.redetec.redetec.model.Usuario;
+import com.buscaio.buscaio.model.CategoriaModel;
+import com.buscaio.buscaio.model.UsuarioModel;
 
 @Entity
 @Table (name =  "tb_postagem")
@@ -42,11 +42,11 @@ public class PostagemModel {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
-	private Categoria categoria;
+	private CategoriaModel categoria;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
-	private Usuario usuario;
+	private UsuarioModel usuario;
 	
 	public long getId() {
 		return id;
@@ -96,19 +96,19 @@ public class PostagemModel {
 		this.data = data;
 	}
 
-	public Categoria getCategoria() {
+	public CategoriaModel getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(CategoriaModel categoria) {
 		this.categoria = categoria;
 	}
 
-	public Usuario getUsuario() {
+	public UsuarioModel getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
 	}
 }

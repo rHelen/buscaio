@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.redetec.redetec.model.Postagem;
-import com.redetec.redetec.repository.CategoriaRepository;
-import com.redetec.redetec.repository.PostagemRepository;
+import com.buscaio.buscaio.model.PostagemModel;
+import com.buscaio.buscaio.repository.CategoriaRepository;
+import com.buscaio.buscaio.repository.PostagemRepository;
 
 @RestController
 @RequestMapping ("/postagens")
@@ -35,24 +35,24 @@ public class PostagemController {
 	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Postagem>> GetAll() {
+	public ResponseEntity<List<PostagemModel>> GetAll() {
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Postagem> GetById(@PathVariable Long id) {
+	public ResponseEntity<PostagemModel> GetById(@PathVariable Long id) {
 		return postagemRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo) {
+	public ResponseEntity<List<PostagemModel>> GetByTitulo(@PathVariable String titulo) {
 		return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem){
+	public ResponseEntity<PostagemModel> post (@Valid @RequestBody PostagemModel postagem){
 		if (categoriaRepository.existsById(postagem.getCategoria().getId()))
 			return ResponseEntity.status(HttpStatus.CREATED)
 					.body(postagemRepository.save(postagem));
@@ -60,7 +60,7 @@ public class PostagemController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem Postagem) {
+	public ResponseEntity<PostagemModel> put(@Valid @RequestBody PostagemModel Postagem) {
 		if (postagemRepository.existsById(Postagem.getId())) {
 			
 			if (categoriaRepository.existsById(Postagem.getCategoria().getId()))
@@ -77,7 +77,7 @@ public class PostagemController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Postagem> Postagem = postagemRepository.findById(id);
+		Optional<PostagemModel> Postagem = postagemRepository.findById(id);
 		
 		if(Postagem.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);

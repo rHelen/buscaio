@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.redetec.redetec.model.Postagem;
+import com.buscaio.buscaio.model.PostagemModel;
 
 @Entity
 @Table (name = "tb_categoria")
@@ -28,7 +28,7 @@ public class CategoriaModel {
 	
 	@OneToMany(mappedBy = "categoria" , cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
-	private List<Postagem> postagem;
+	private List<PostagemModel> postagem;
 
 
 	public long getId() {
@@ -51,12 +51,12 @@ public class CategoriaModel {
 	}
 
 
-	public List<Postagem> getPostagem() {
+	public List<PostagemModel> getPostagem() {
 		return postagem;
 	}
 
 
-	public void setPostagem(List<Postagem> postagem) {
+	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
 }

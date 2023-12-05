@@ -2,27 +2,21 @@ package com.buscaio.buscaio.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//import javax.persistence.CascadeType;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.OneToMany;
-//import javax.persistence.Table;
-///import javax.validation.constraints.Email;
-//import javax.validation.constraints.NotBlank;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import com.redetec.redetec.model.Postagem;
-
-//import io.swagger.v3.oas.annotations.media.Schema;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name="tb_usuario")
@@ -36,12 +30,12 @@ public class UsuarioModel {
 	@Size(min=2, max=100)
 	private String nome;
 	
-	//@Schema(example = "email@email.com.br")
+	@Schema(example = "email@email.com.br")
 	@NotNull(message = "O atributo Usuário é Obrigatório!")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario;
 	
-	@jakarta.validation.constraints.NotBlank
+	@NotBlank
 	@Size(min = 8, max = 100, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	

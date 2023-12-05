@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.redetec.redetec.model.Usuario;
-import com.redetec.redetec.model.UsuarioLogin;
-import com.redetec.redetec.repository.UsuarioRepository;
-import com.redetec.redetec.service.UsuarioService;
+import com.buscaio.buscaio.model.UsuarioModel;
+import com.buscaio.buscaio.model.UsuarioLogin;
+import com.buscaio.buscaio.repository.UsuarioRepository;
+import com.buscaio.buscaio.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -34,14 +34,14 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping("/all")
-	public ResponseEntity <List<Usuario>> getAll(){
+	public ResponseEntity <List<UsuarioModel>> getAll(){
 		
 		return ResponseEntity.ok(usuarioRepository.findAll());
 		
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
+	public ResponseEntity<UsuarioModel> getById(@PathVariable Long id) {
 		return usuarioRepository.findById(id)
 			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.notFound().build());
@@ -56,7 +56,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
+	public ResponseEntity<UsuarioModel> postUsuario(@Valid @RequestBody UsuarioModel usuario) {
 
 		return usuarioService.cadastrarUsuario(usuario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
@@ -65,7 +65,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/atualizar")
-	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
+	public ResponseEntity<UsuarioModel> putUsuario(@Valid @RequestBody UsuarioModel usuario) {
 		return usuarioService.atualizarUsuario(usuario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());

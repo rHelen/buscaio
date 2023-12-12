@@ -12,16 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
-public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
+public class BasicSecurityConfig{
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	
+	public SecurityFilterChain configure(AuthenticationManagerBuilder auth) throws Exception {
+		return
 		
 		 auth.userDetailsService(userDetailsService);
 
@@ -37,11 +36,9 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-
-	 @Override
-	protected void configure(HttpSecurity http) throws Exception {
+	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		
-
+		return
 		http.authorizeRequests()
 			.antMatchers("/usuarios/logar").permitAll()
 			.antMatchers("/usuarios/cadastrar").permitAll()

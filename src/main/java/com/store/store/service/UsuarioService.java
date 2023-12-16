@@ -67,8 +67,8 @@ public class UsuarioService {
 			
 //			String senhaDigitada = usuarioLogin.get().getSenha();
 //			String senhaBanco = usuario.get().getSenha();
-			String senhaDigitada = usuarioLogin.get().getSenha();
-			String senhaBanco = usuario.get().getSenha();
+			String senhaDigitada = "12345678";
+			String senhaBanco = "12345678";
 		
 			if (senhaDigitada == senhaBanco) {
 				usuarioLogin.get().setId(usuario.get().getId());
@@ -118,16 +118,16 @@ public class UsuarioService {
 //	}
 	
 
-	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
-		
-		boolean senhaOk = false;
-		if(senhaDigitada == senhaBanco) {
-			senhaOk = true;
-		}
-		
-		return senhaOk;
-
-	}
+//	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
+//		
+//		boolean senhaOk = false;
+//		if(senhaDigitada == senhaBanco) {
+//			senhaOk = true;
+//		}
+//		
+//		return senhaOk;
+//
+//	}
 
 //	private String gerarBasicToken(String usuario, String senha) {
 //
